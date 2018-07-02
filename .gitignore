@@ -1,4 +1,4 @@
 /node_modules/
-/dist/
-/tweed.min.js
-/tweed.min.js.map
+
+tweed.min.js
+tweed.min.js.map
