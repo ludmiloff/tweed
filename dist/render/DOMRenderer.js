@@ -53,9 +53,29 @@ var _AttributesPlugin = require('../plugins/AttributesPlugin');
 
 var _AttributesPlugin2 = _interopRequireDefault(_AttributesPlugin);
 
+var _class = require('snabbdom/es/modules/class');
+
+var _class2 = _interopRequireDefault(_class);
+
+var _eventlisteners = require('snabbdom/es/modules/eventlisteners');
+
+var _eventlisteners2 = _interopRequireDefault(_eventlisteners);
+
+var _style = require('snabbdom/es/modules/style');
+
+var _style2 = _interopRequireDefault(_style);
+
+var _attributes = require('snabbdom/es/modules/attributes');
+
+var _attributes2 = _interopRequireDefault(_attributes);
+
+var _props = require('snabbdom/es/modules/props');
+
+var _props2 = _interopRequireDefault(_props);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-_Engine2.default.plugins = [new _ClassPlugin2.default([require('snabbdom/modules/class')]), new _EventsPlugin2.default([require('snabbdom/modules/eventlisteners')]), new _HooksPlugin2.default([]), new _StylePlugin2.default([require('snabbdom/modules/style')]), new _InnerHTMLPlugin2.default([_InnerHTMLPlugin4.default]), new _RenderablePromisePlugin2.default(), new _AttributesPlugin2.default([require('snabbdom/modules/attributes'), require('snabbdom/modules/props')])];
+_Engine2.default.plugins = [new _ClassPlugin2.default([_class2.default]), new _EventsPlugin2.default([_eventlisteners2.default]), new _HooksPlugin2.default([]), new _StylePlugin2.default([_style2.default]), new _InnerHTMLPlugin2.default([_InnerHTMLPlugin4.default]), new _RenderablePromisePlugin2.default(), new _AttributesPlugin2.default([_attributes2.default, _props2.default])];
 
 var patch = (0, _snabbdom.init)(_Engine2.default.snabbdomModules);
 

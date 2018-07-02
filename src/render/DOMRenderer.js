@@ -11,16 +11,22 @@ import RenderablePromisePlugin from '../plugins/RenderablePromisePlugin'
 
 import AttributesPlugin from '../plugins/AttributesPlugin'
 
+import classModule from 'snabbdom/es/modules/class'
+import eventListenersModule from 'snabbdom/es/modules/eventlisteners'
+import styleModule from 'snabbdom/es/modules/style'
+import attributesModule from 'snabbdom/es/modules/attributes'
+import propsModule from 'snabbdom/es/modules/props'
+
 Engine.plugins = [
-  new ClassPlugin([require('snabbdom/modules/class')]),
-  new EventsPlugin([require('snabbdom/modules/eventlisteners')]),
+  new ClassPlugin([classModule]),
+  new EventsPlugin([eventListenersModule]),
   new HooksPlugin([]),
-  new StylePlugin([require('snabbdom/modules/style')]),
+  new StylePlugin([styleModule]),
   new InnerHTMLPlugin([InnerHTMLPluginDriver]),
   new RenderablePromisePlugin(),
   new AttributesPlugin([
-    require('snabbdom/modules/attributes'),
-    require('snabbdom/modules/props')
+    attributesModule,
+    propsModule
   ])
 ]
 
