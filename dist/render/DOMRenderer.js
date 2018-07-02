@@ -19,7 +19,7 @@ var _Engine = require('../Engine');
 
 var _Engine2 = _interopRequireDefault(_Engine);
 
-var _snabbdom = require('snabbdom');
+var _snabbdom = require('snabbdom/es/snabbdom');
 
 var _ClassPlugin = require('../plugins/ClassPlugin');
 

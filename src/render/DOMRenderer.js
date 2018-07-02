@@ -1,5 +1,5 @@
 import Engine from '../Engine'
-import { init } from 'snabbdom'
+import { init } from 'snabbdom/es/snabbdom'
 
 import ClassPlugin from '../plugins/ClassPlugin'
 import EventsPlugin from '../plugins/EventsPlugin'
