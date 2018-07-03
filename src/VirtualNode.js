@@ -1,4 +1,3 @@
-import isArray from './isArray'
 import Engine from './Engine'
 
 export class VirtualTextNode {
@@ -151,7 +150,7 @@ export class VirtualNode {
       }
     }
 
-    if (isArray(renderable)) {
+    if (Array.isArray(renderable)) {
       const { children: reducedChildren, tracked: reducedTracked } =
         renderable.reduce(VirtualNode._renderChild, { children: [], tracked: [] })
 

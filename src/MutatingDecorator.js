@@ -1,5 +1,4 @@
 import { createSymbol, STATEFUL, MUTATING_FIELDS } from './Symbols'
-import isArray from './isArray'
 import EngineCollection from './EngineCollection'
 
 export default function MutatingDecorator (sync, prototype, name, desc) {
@@ -18,7 +17,7 @@ export default function MutatingDecorator (sync, prototype, name, desc) {
   if (desc && desc.initializer) {
     let initialValue = desc.initializer()
 
-    if (isArray(initialValue)) {
+    if (Array.isArray(initialValue)) {
       wrapArray(sync, initialValue)
     }
 
@@ -34,7 +33,7 @@ export default function MutatingDecorator (sync, prototype, name, desc) {
     set (newValue) {
       const oldValue = this[VALUE]
 
-      if (isArray(newValue)) {
+      if (Array.isArray(newValue)) {
         wrapArray(sync, newValue, name)
       }
 

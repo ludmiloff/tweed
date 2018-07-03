@@ -21,10 +21,6 @@ var _createClass2 = require('babel-runtime/helpers/createClass');
 
 var _createClass3 = _interopRequireDefault(_createClass2);
 
-var _isArray = require('./isArray');
-
-var _isArray2 = _interopRequireDefault(_isArray);
-
 var _Engine = require('./Engine');
 
 var _Engine2 = _interopRequireDefault(_Engine);
@@ -278,7 +274,7 @@ var VirtualNode = exports.VirtualNode = function () {
         };
       }
 
-      if ((0, _isArray2.default)(renderable)) {
+      if (Array.isArray(renderable)) {
         var _renderable$reduce = renderable.reduce(VirtualNode._renderChild, { children: [], tracked: [] }),
             reducedChildren = _renderable$reduce.children,
             reducedTracked = _renderable$reduce.tracked;

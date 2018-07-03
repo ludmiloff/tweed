@@ -12,10 +12,6 @@ exports.default = MutatingDecorator;
 
 var _Symbols = require('./Symbols');
 
-var _isArray = require('./isArray');
-
-var _isArray2 = _interopRequireDefault(_isArray);
-
 var _EngineCollection = require('./EngineCollection');
 
 var _EngineCollection2 = _interopRequireDefault(_EngineCollection);
@@ -38,7 +34,7 @@ function MutatingDecorator(sync, prototype, name, desc) {
   if (desc && desc.initializer) {
     var initialValue = desc.initializer();
 
-    if ((0, _isArray2.default)(initialValue)) {
+    if (Array.isArray(initialValue)) {
       wrapArray(sync, initialValue);
     }
 
@@ -54,7 +50,7 @@ function MutatingDecorator(sync, prototype, name, desc) {
     set: function set(newValue) {
       var oldValue = this[VALUE];
 
-      if ((0, _isArray2.default)(newValue)) {
+      if (Array.isArray(newValue)) {
         wrapArray(sync, newValue, name);
       }
 
