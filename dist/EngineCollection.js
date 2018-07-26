@@ -21,6 +21,7 @@ var EngineCollection = function () {
   function EngineCollection() {
     (0, _classCallCheck3.default)(this, EngineCollection);
     this._engines = [];
+    this._renderables = [];
     this._isDirty = false;
   }
 
@@ -28,6 +29,11 @@ var EngineCollection = function () {
     key: 'connectEngine',
     value: function connectEngine(engine) {
       this._engines.push(engine);
+    }
+  }, {
+    key: 'addRenderable',
+    value: function addRenderable(renderable) {
+      this._renderables.push(renderable);
     }
   }, {
     key: 'notify',

@@ -1,5 +1,5 @@
 import Engine from './Engine'
-import EngineCollection from './EngineCollection';
+import EngineCollection from './EngineCollection'
 
 export class VirtualTextNode {
   constructor (text) {
