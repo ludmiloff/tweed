@@ -5,6 +5,10 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = undefined;
 
+var _weakMap = require('babel-runtime/core-js/weak-map');
+
+var _weakMap2 = _interopRequireDefault(_weakMap);
+
 var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
 
 var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
@@ -21,7 +25,7 @@ var EngineCollection = function () {
   function EngineCollection() {
     (0, _classCallCheck3.default)(this, EngineCollection);
     this._engines = [];
-    this._renderables = [];
+    this._renderables = new _weakMap2.default();
     this._isDirty = false;
   }
 
@@ -33,7 +37,7 @@ var EngineCollection = function () {
   }, {
     key: 'addRenderable',
     value: function addRenderable(renderable) {
-      this._renderables.push(renderable);
+      this._renderables.set(renderable);
     }
   }, {
     key: 'notify',

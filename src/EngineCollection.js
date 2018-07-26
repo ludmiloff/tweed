@@ -2,7 +2,7 @@ let INSTANCE
 
 export default class EngineCollection {
   _engines = []
-  _renderables = []
+  _renderables = new WeakMap()
   _isDirty = false
 
   static get instance () {
@@ -14,7 +14,7 @@ export default class EngineCollection {
   }
 
   addRenderable (renderable) {
-    this._renderables.push(renderable)
+    this._renderables.set(renderable)
   }
 
   notify (obj, prop, sync, newValue, oldValue) {
