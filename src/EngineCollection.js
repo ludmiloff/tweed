@@ -2,6 +2,7 @@ let INSTANCE
 
 export default class EngineCollection {
   _engines = []
+  _renderables = []
   _isDirty = false
 
   static get instance () {
@@ -10,6 +11,10 @@ export default class EngineCollection {
 
   connectEngine (engine) {
     this._engines.push(engine)
+  }
+
+  addRenderable (renderable) {
+    this._renderables.push(renderable)
   }
 
   notify (obj, prop, sync, newValue, oldValue) {

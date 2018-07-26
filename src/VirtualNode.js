@@ -1,4 +1,5 @@
 import Engine from './Engine'
+import EngineCollection from './EngineCollection';
 
 export class VirtualTextNode {
   constructor (text) {
@@ -172,6 +173,7 @@ export class VirtualNode {
 
     if (renderable.render != null) {
       if (typeof renderable.render === 'function') {
+        EngineCollection.instance.addRenderable(renderable)
         return VirtualNode._renderChild({
           children,
           tracked: [ ...tracked, renderable ]
