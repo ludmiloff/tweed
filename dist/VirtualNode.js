@@ -291,14 +291,14 @@ var VirtualNode = exports.VirtualNode = function () {
 
       if (renderable.render != null) {
         if (typeof renderable.render === 'function') {
-          if (typeof renderable.__isDirty === 'undefined' || renderable.__isDirty === true) {
-            renderable.__vnode = VirtualNode._renderChild({
+          if (typeof renderable._isDirty === 'undefined' || renderable._isDirty === true) {
+            renderable._vnode = VirtualNode._renderChild({
               children: children,
               tracked: [].concat((0, _toConsumableArray3.default)(tracked), [renderable])
             }, renderable.render());
-            renderable.__isDirty = false;
+            renderable._isDirty = false;
           }
-          return renderable.__vnode;
+          return renderable._vnode;
         }
 
         return VirtualNode._renderChild({ children: children, tracked: tracked }, renderable.render);
