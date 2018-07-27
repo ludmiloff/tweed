@@ -172,7 +172,7 @@ export class VirtualNode {
 
     if (renderable.render != null) {
       if (typeof renderable.render === 'function') {
-        if (typeof renderable.__isDirty === 'undefined' || renderable.__isDirty === false) {
+        if (typeof renderable.__isDirty === 'undefined' || renderable.__isDirty === true) {
           renderable.__vnode = VirtualNode._renderChild({
             children,
             tracked: [ ...tracked, renderable ]

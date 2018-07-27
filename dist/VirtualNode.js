@@ -291,7 +291,7 @@ var VirtualNode = exports.VirtualNode = function () {
 
       if (renderable.render != null) {
         if (typeof renderable.render === 'function') {
-          if (typeof renderable.__isDirty === 'undefined' || renderable.__isDirty === false) {
+          if (typeof renderable.__isDirty === 'undefined' || renderable.__isDirty === true) {
             renderable.__vnode = VirtualNode._renderChild({
               children: children,
               tracked: [].concat((0, _toConsumableArray3.default)(tracked), [renderable])

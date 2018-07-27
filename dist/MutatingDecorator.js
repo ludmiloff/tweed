@@ -55,6 +55,7 @@ function MutatingDecorator(sync, prototype, name, desc) {
       }
 
       this[VALUE] = newValue;
+      this['__isDirty'] = true;
 
       _EngineCollection2.default.instance.notify(this, name, sync, newValue, oldValue);
     }
