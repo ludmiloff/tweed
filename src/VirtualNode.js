@@ -1,5 +1,4 @@
 import Engine from './Engine'
-import EngineCollection from './EngineCollection'
 
 export class VirtualTextNode {
   constructor (text) {
@@ -173,11 +172,14 @@ export class VirtualNode {
 
     if (renderable.render != null) {
       if (typeof renderable.render === 'function') {
-        EngineCollection.instance.addRenderable(renderable)
-        return VirtualNode._renderChild({
-          children,
-          tracked: [ ...tracked, renderable ]
-        }, renderable.render())
+        if (typeof renderable.__isDirty === 'undefined' || renderable.__isDirty === false) {
+          renderable.__vnode = VirtualNode._renderChild({
+            children,
+            tracked: [ ...tracked, renderable ]
+          }, renderable.render())
+          renderable.__isDirty = false
+        }
+        return renderable.__vnode
       }
 
       return VirtualNode._renderChild({ children, tracked }, renderable.render)

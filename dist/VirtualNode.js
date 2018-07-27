@@ -25,10 +25,6 @@ var _Engine = require('./Engine');
 
 var _Engine2 = _interopRequireDefault(_Engine);
 
-var _EngineCollection = require('./EngineCollection');
-
-var _EngineCollection2 = _interopRequireDefault(_EngineCollection);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var VirtualTextNode = exports.VirtualTextNode = function () {
@@ -295,11 +291,14 @@ var VirtualNode = exports.VirtualNode = function () {
 
       if (renderable.render != null) {
         if (typeof renderable.render === 'function') {
-          _EngineCollection2.default.instance.addRenderable(renderable);
-          return VirtualNode._renderChild({
-            children: children,
-            tracked: [].concat((0, _toConsumableArray3.default)(tracked), [renderable])
-          }, renderable.render());
+          if (typeof renderable.__isDirty === 'undefined' || renderable.__isDirty === false) {
+            renderable.__vnode = VirtualNode._renderChild({
+              children: children,
+              tracked: [].concat((0, _toConsumableArray3.default)(tracked), [renderable])
+            }, renderable.render());
+            renderable.__isDirty = false;
+          }
+          return renderable.__vnode;
         }
 
         return VirtualNode._renderChild({ children: children, tracked: tracked }, renderable.render);
