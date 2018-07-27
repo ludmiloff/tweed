@@ -55,7 +55,12 @@ function MutatingDecorator(sync, prototype, name, desc) {
       }
 
       this[VALUE] = newValue;
-      this['__isDirty'] = true;
+      this.__isDirty = true;
+      var __parent = this.parent;
+      while (__parent && __parent.__isDirty === false) {
+        __parent.__isDirty = true;
+        __parent = __parent.parent;
+      }
 
       _EngineCollection2.default.instance.notify(this, name, sync, newValue, oldValue);
     }

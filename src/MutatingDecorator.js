@@ -38,7 +38,12 @@ export default function MutatingDecorator (sync, prototype, name, desc) {
       }
 
       this[VALUE] = newValue
-      this['__isDirty'] = true
+      this.__isDirty = true
+      let __parent = this.parent
+      while (__parent && __parent.__isDirty === false) {
+        __parent.__isDirty = true
+        __parent = __parent.parent
+      }
 
       EngineCollection.instance
         .notify(this, name, sync, newValue, oldValue)
