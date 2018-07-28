@@ -27,6 +27,19 @@ var _Engine2 = _interopRequireDefault(_Engine);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+// Borrowed from snabbdom/h
+function addNS(data, children, sel) {
+  data.ns = 'http://www.w3.org/2000/svg';
+  if (sel !== 'foreignObject' && children !== undefined) {
+    for (var i = 0; i < children.length; ++i) {
+      var childData = children[i].data;
+      if (childData !== undefined) {
+        addNS(childData, children[i].children, children[i].sel);
+      }
+    }
+  }
+}
+
 var VirtualTextNode = exports.VirtualTextNode = function () {
   function VirtualTextNode(text) {
     (0, _classCallCheck3.default)(this, VirtualTextNode);
@@ -220,6 +233,10 @@ var VirtualNode = exports.VirtualNode = function () {
           p.consumeAttributes(data, attributes, _this)
         );
       });
+
+      if (this.tagName[0] === 's' && this.tagName[1] === 'v' && this.tagName[2] === 'g' && (this.tagName.length === 3 || this.tagName[3] === '.' || this.tagName[3] === '#')) {
+        addNS(data, this.children, this.tagName);
+      }
 
       return data;
     }

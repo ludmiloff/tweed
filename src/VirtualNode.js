@@ -1,5 +1,18 @@
 import Engine from './Engine'
 
+// Borrowed from snabbdom/h
+function addNS (data, children, sel) {
+  data.ns = 'http://www.w3.org/2000/svg'
+  if (sel !== 'foreignObject' && children !== undefined) {
+    for (let i = 0; i < children.length; ++i) {
+      let childData = children[i].data
+      if (childData !== undefined) {
+        addNS(childData, children[i].children, children[i].sel)
+      }
+    }
+  }
+}
+
 export class VirtualTextNode {
   constructor (text) {
     this.text = text
@@ -229,6 +242,13 @@ export class VirtualNode {
       // any of the attribute values
       p.consumeAttributes(data, attributes, this)
     )
+
+    if (
+      this.tagName[0] === 's' && this.tagName[1] === 'v' && this.tagName[2] === 'g' &&
+      (this.tagName.length === 3 || this.tagName[3] === '.' || this.tagName[3] === '#')
+    ) {
+      addNS(data, this.children, this.tagName)
+    }
 
     return data
   }
